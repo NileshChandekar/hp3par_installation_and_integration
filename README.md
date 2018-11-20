@@ -1,55 +1,49 @@
-# HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP13
+# HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13
 
-
-Tested and working on Centos-7 minimum version !
+Tested and working on all above Openstack Environemnt. 
 
 ## Warning
+
+For RHOSP-13, HP3Par lefthand is not supported as its a containerized environment.  
+There are some tweak to make it work. 
+
+We will not take you throught the process of Packstack-10/OSP10/13 installation.
 
 
 What's included
 ---------------
-* dynamips
-* iouyap
-* gns3-server
-* gns3-gui
-* vpcs
-* virtualbox
-* wireshark
+* Hp3Par Installtion on KVM
+* Static IP Configuration of Hp3Par
+* CMC Installtion on Lubuntu (as CMC required GUI, we decided to take light weight GUI)
+* Connect CMC with Hp3Par
+* User Management, RAID Creation, 
+* Integration of Hp3Par with Openstack (Packstack-10/RHOSP-10 & RHOSP-13) 
+* Testing
 
-Installation steps
-------------------
-#####AIO (GNS3 full installation)
+Hp3Par Installation steps
+--------------------------
 
-```bash
-# git clone https://github.com/NileshChandekar/gns3-for-centos7.git
-# cd gns3-for-centos7
-# cd script
-```
 
-"#############   GNS-FOR-CENTOS-7   #################"
 
-~~~
-./install_gns_centos_7.sh
-~~~
 
-"#############   GUI-FOR-CENTOS-7   #################"
+CMC Installation steps
+--------------------------
 
-~~~
-./install_gui_centos_7.sh
-~~~
 
-"#############   VNC-FOR-CENTOS-7   #################"
 
-This will only install packages. 
+Integration with Openstack Environemnt :-
+------------------------------------------
 
-~~~
-./install_vnc_centos_7.sh
-~~~
 
-Create geometry , Enter any password 6 character long. 
 
-~~~
-sudo /usr/bin/vncserver :1 -geometry 1800x1200 -depth 24       
-~~~
+Packstack Integration :-
+------------------------
 
+
+RHOSP-10 Integration :- 
+-----------------------
+
+ 
+RHOSP-13 Integration :- 
+-----------------------
 
