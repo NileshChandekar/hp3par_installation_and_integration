@@ -23,6 +23,23 @@ What's included
 Hp3Par Installation steps
 --------------------------
 
+~~~
+Overview
+~~~
+
+~~~
+Install HPE StoreVirtual VSA on ANY new server from ANY server vendor.** StoreVirtual VSA transforms unused capacity inside your servers into a shared storage array. 
+You get fully featured shared storage without the cost and complexity of dedicated storage hardware. 
+Register now and try HPE software-defined storage for free for 3 years. 
+Your license will be activated when you install the software.
+
+NOTE: StoreVirtual VSA performs optimally when you install the same software version on every server in the management group. 
+Previously installed free versions of StoreVirtual VSA software can be upgraded with the purchase of a full license.
+
+New customers:
+
+    Download the latest HPE StoreVirtual Free 1TB VSA 
+~~~
 
 
 
