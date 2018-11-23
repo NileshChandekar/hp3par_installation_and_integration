@@ -20,9 +20,21 @@ What's included
 * Integration of Hp3Par with Openstack (Packstack-10/RHOSP-10 & RHOSP-13) 
 * Testing
 
+Prerequisites
+--------------------------
+* To Begin with installation make sure you fulfill the following prerequisites
+  - Minimum of one node to add into cluster 
+  - Node Specifications: 4Gb RAM, 3*10GB Disk(which should be added once VSA node is ready)
+  - Hpe LeftHand setup tar file 
+    - HPE_StoreVirtual_KVM_VSA_and_StoreVirtual_FOM_Installer_TA688-10554.tgz
+    - 
+  
 Hp3Par Installation steps
 --------------------------
-
+* First Check if you enough space for /var/lib/libvirt/images atleast of 150GB
+* Open the virt-manager of you base machine.
+* Click on File->New Virtual Machine 
+* Choose Fourth option `Import existing disk image` and then click on *Forwad*
 
 
 
