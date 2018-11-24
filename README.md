@@ -88,7 +88,6 @@ New customers:
 * Input the value of ram and cpus
 * It will take upto 15 - 20 minutes to setup the machine.
 * Once you get the login screen type *start* and press *enter*, you will get the below screen
-*
 
 CMC Installation steps
 --------------------------
