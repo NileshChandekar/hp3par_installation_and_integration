@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Introduction | HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Tested and working on all above Openstack Environemnt.">
+        <meta name="generator" content="GitBook 1.0.3">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="0" data-basepath="." data-revision="1543250359204">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter active" data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_2614">
+                    
+                        <h1 id="hp3par-installation-and-deployment-with-integration-of-packstack-10rhosp-10rhosp-13">HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13</h1>
+<p>Tested and working on all above Openstack Environemnt.</p>
+<h2 id="warning">Warning</h2>
+<p>For RHOSP-13, HP3Par lefthand is not supported as its a containerized environment.
+There are some tweak to make it work.</p>
+<p>We will not take you throught the process of Packstack-10/OSP10/13 installation.</p>
+<h2 id="whats-included">What&#39;s included</h2>
+<ul>
+<li>Hp3Par Installtion on KVM</li>
+<li>Static IP Configuration of Hp3Par</li>
+<li>CMC Installtion on Lubuntu (as CMC required GUI, we decided to take light weight GUI)</li>
+<li>Connect CMC with Hp3Par</li>
+<li>User Management, RAID Creation,</li>
+<li>Integration of Hp3Par with Openstack (Packstack-10/RHOSP-10 &amp; RHOSP-13)</li>
+<li>Testing</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>To Begin with installation make sure you fulfill the following prerequisites<ul>
+<li>Minimum of one node to add into cluster</li>
+<li>Node Specifications: 4Gb RAM, 3*10GB Disk(which should be added once VSA node is ready)</li>
+<li>Hpe LeftHand setup tar file<ul>
+<li>HPE_StoreVirtual_KVM_VSA_and_StoreVirtual_FOM_Installer_TA688-10554.tgz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="hp3par-installation-steps">Hp3Par Installation steps</h2>
+<pre><code>Overview
+</code></pre><pre><code>Install HPE StoreVirtual VSA on ANY new server from ANY server vendor.** StoreVirtual VSA transforms unused capacity inside your servers into a shared storage array.
+You get fully featured shared storage without the cost and complexity of dedicated storage hardware.
+Register now and try HPE software-defined storage for free for 3 years.
+Your license will be activated when you install the software.
+
+NOTE: StoreVirtual VSA performs optimally when you install the same software version on every server in the management group.
+Previously installed free versions of StoreVirtual VSA software can be upgraded with the purchase of a full license.
+
+New customers:
+
+    Download the latest HPE StoreVirtual Free 1TB VSA
+</code></pre><h3 id="begin-installation">Begin Installation</h3>
+<ul>
+<li><p>First Check if you enough space for /var/lib/libvirt/images atleast of 150GB</p>
+<p>  <img src="images/hpe01.png" /></p>
+</li>
+<li><p>If not check for the size on /home, For example in my case I have only 50GB for my partition and 2.7T on my /home</p>
+</li>
+<li><p>Create a directory named images inside /home and run all the commands given below</p>
+<pre><code>  cd /var/lib/libvirt
+  rm -rf images
+  mkdir /home/images
+  chcon -t virt_image_t /home/images
+  ln -s /home/images .
+</code></pre></li>
+<li><p>Inside /home/images extract your HPE_StoreVirtual_KVM_VSA_and_StoreVirtual_FOM_Installer_TA688-10554.tgz</p>
+<pre><code>  tar -xvf HPE_StoreVirtual_KVM_VSA_and_StoreVirtual_FOM_Installer_TA688-10554.tgz
+</code></pre></li>
+<li><p>Then extract KVM-VSA-12.7.00.0226_01.img.tgz which you get after running the above command.</p>
+<pre><code>  tar -xvf KVM-VSA-12.7.00.0226_01.img.tgz
+</code></pre></li>
+<li>Open the virt-manager of you base machine.</li>
+<li>Click on File → New Virtual Machine</li>
+<li>Choose Fourth option <code>Import existing disk image</code> and then click on <em>Forwad</em></li>
+<li><p>Click on File-&gt;New Virtual Machine</p>
+<p>  <img src="images/hpe02.png" width="600" /></p>
+</li>
+<li><p>Choose Fourth option <code>Import existing disk image</code> and then click on <em>Forwad</em></p>
+<p>  <img src="images/hpe03.png" width="600" /></p>
+<p>  <img src="images/hpe04.png" width="600" /></p>
+</li>
+<li><p>Input the value of ram and cpus</p>
+</li>
+<li>It will take upto 15 - 20 minutes to setup the machine.</li>
+<li><p>Once you get the login screen type <em>start</em> and press <em>enter</em>, you will get the below screen.</p>
+<p>  <img src="images/hpe05.png" width="600" /></p>
+</li>
+<li><p>Press <em>Enter</em> to login</p>
+<p>  <img src="images/hpe06.png" width="600" /></p>
+</li>
+<li><p>Go in <em>Network TCP/IP Settings</em></p>
+<p>  <img src="images/hpe08.png" width="600" /></p>
+</li>
+<li><p>Hit enter and select 2nd option to get ip automatically from dhcp, you can also set ip manual if you want</p>
+<p>  <img src="images/hpe09.png" width="600" /></p>
+</li>
+<li><p>Press <em>Enter</em></p>
+<p>  <img src="images/hpe10.png" width="600" /></p>
+</li>
+<li><p>Finally you will get the. This ip needs to be given in CMC which we will see further</p>
+<p>  <img src="images/hpe12.png" width="600" /></p>
+</li>
+</ul>
+<h2 id="cmc-installation-steps">CMC Installation steps</h2>
+<ul>
+<li>Open your lubuntu session<ul>
+<li>Make Sure you have CMC bin file with you<pre><code>   HPE_StoreVirtual_Centralized_Management_Console_for_Linux_64_bit_BM480-10622.bin
+</code></pre></li>
+</ul>
+</li>
+<li><p>Run the binary file you will see the following window</p>
+<p>  <img src="images/cmc01.png" width="600" /></p>
+</li>
+<li>Click on next</li>
+<li><p>Accept the license agreement</p>
+<p>  <img src="images/cmc02.png" width="600" /></p>
+</li>
+<li><p>Go with typical installation set</p>
+<p>  <img src="images/cmc03.png" width="600" /></p>
+</li>
+<li><p>Just go on clicking next</p>
+<p>  <img src="images/cmc04.png" width="600" /></p>
+<p>  <img src="images/cmc05.png" width="600" /></p>
+<p>  <img src="images/cmc06.png" width="600" /></p>
+<p>  <img src="images/cmc07.png" width="600" /></p>
+<p>  <img src="images/cmc08.png" width="600" /></p>
+<p>  <img src="images/cmc09.png" width="600" /></p>
+<p>  <img src="images/cmc10.png" width="600" /></p>
+</li>
+</ul>
+<ul>
+<li><p>Go to the directory /opt/HPE/StoreVirtual/UI/</p>
+<p>  <img src="images/cmc11.png" width="600" /></p>
+</li>
+<li><p>Hit the following command</p>
+<pre><code>  ./HPE\ StoreVirtual\ Centralized\ Management\ Console
+</code></pre></li>
+<li><p>The CMC Window will open, it looks like the below figure</p>
+<p>  <img src="images/cmc12.png" width="600" /></p>
+</li>
+<li><p>Click on Add and enter the VSA node ip address</p>
+<p>  <img src="images/cmc13.png" width="600" /></p>
+<p>  <img src="images/cmc14.png" width="600" /></p>
+</li>
+<li><p>Now click on <code>Getting Started</code> at left side</p>
+<p>  <img src="images/cmc15.png" width="600" /></p>
+</li>
+<li><p>Click next</p>
+<p>  <img src="images/cmc16.png" width="600" /></p>
+</li>
+<li><p>Create New Management Group</p>
+<p>  <img src="images/cmc17.png" width="600" /></p>
+</li>
+<li><p>Add management group name</p>
+<p>  <img src="images/cmc19.png" width="600" /></p>
+</li>
+<li><p>Create user and set password for the user</p>
+<p>  <img src="images/cmc20.png" width="600" /></p>
+</li>
+<li><p>Add ntp server ip address in next window</p>
+<p>  <img src="images/cmc21.png" width="600" /></p>
+<p>  <img src="images/cmc22.png" width="600" /></p>
+</li>
+<li><p>Add DNS Server</p>
+<p>  <img src="images/cmc23.png" width="600" /></p>
+</li>
+<li><p>Enter the mail server ip address/domain</p>
+<ul>
+<li><p>[Note: In my case I have given dummy information]</p>
+<p><img src="images/cmc24.png" width="600" /></p>
+<p><img src="images/cmc25.png" width="600" /></p>
+<p><img src="images/cmc26.png" width="600" /></p>
+</li>
+</ul>
+</li>
+<li><p>Select the type of cluster I do not have <code>multi-site</code> so going for     <code>standard</code></p>
+<p>  <img src="images/cmc27.png" width="600" /></p>
+</li>
+<li><p>Enter the Cluster name over there</p>
+<p>  <img src="images/cmc28.png" width="600" /></p>
+</li>
+<li><p>Now its time to enter the virtual ip, you virtual ip should be reachable from any instance in same network</p>
+<p>  <img src="images/cmc29.png" width="600" /></p>
+</li>
+<li><p>Enter all the required details</p>
+<p>  <img src="images/cmc30.png" width="600" /></p>
+</li>
+</ul>
+<ul>
+<li><p>Wait for some time since it takes time to create a management group</p>
+<p>  <img src="images/cmc31.png" width="600" /></p>
+</li>
+<li><p>You will get something like this</p>
+<p>  <img src="images/cmc32.png" width="600" /></p>
+</li>
+</ul>
+<ul>
+<li><p>You can see your cluster at the left side of panel</p>
+<p>  <img src="images/cmc33.png" width="600" /></p>
+</li>
+</ul>
+<h2 id="integration-with-openstack-environemnt--">Integration with Openstack Environemnt :-</h2>
+<h2 id="packstack-integration--">Packstack Integration :-</h2>
+<h2 id="rhosp-10-integration--">RHOSP-10 Integration :-</h2>
+<h2 id="rhosp-13-integration--">RHOSP-13 Integration :-</h2>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
