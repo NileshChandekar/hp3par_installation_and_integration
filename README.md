@@ -238,15 +238,148 @@ Integration with Openstack Environemnt :-
 ------------------------------------------
 
 
-
 Packstack Integration :-
 ------------------------
 
 
 RHOSP-10 Integration :-
 -----------------------
+* I haved installed RHOSP10 using director.
+* In RHOSP10 we have all services as systemd service
+
+* To integrate hpelefthand with rhosp10 we need to create customize templates the templates for osp10 is loaded on this repo have a look on it
+
+* Check the contents of custom-env.yaml file in rhosp13_hpelefthand.tar
+* Make necessry changes as your environment and include this environment file in your deployment command (** for reference check deploy.sh script given in the tar**).
+* Hit the deployment command
+* Once your deployment is complete to undercloud and source overcloudrc file.
+    ~~~
+    $ source overcloudrc
+    ~~~
+* Then check the cinder services
+    ~~~
+    $ cinder service-list
+    ~~~
+    - If you see that your your hpelefthand down, like below output
+    ~~~
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+| Binary           | Host                       | Zone | Status  | State | Updated_at                 | Disabled Reason |
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+| cinder-scheduler | hostgroup                  | nova | enabled | up    | 2018-11-28T06:55:18.000000 | -               |
+| cinder-volume    | hostgroup@tripleo-lefthand | nova | enabled | down  | 2018-11-28T06:55:23.000000 | -               |
+| cinder-volume    | hostgroup@tripleo_iscsi    | nova | enabled | down  | 2018-11-27T10:57:28.000000 | -               |
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+
+    ~~~
+* Then go on controller node and install pip over that node
+~~~
+# yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+# yum install python-pip -y
+# pip install --upgrade pip
+# pip install 'python-lefthandclient>=2.1,<3.0'
+~~~
+
+* In above commands we can see that we install python-hpe client because if your check cinder-volume logs you will find an error msg for hpelefthand driver not installed
+
+~~~
+# less /var/log/cinder/volume.log
+~~~
+
+* Restart cinder volume service so to apply the latest changes
+
+~~~
+# systemctl restart openstack-cinder-volume
+~~~
+
+* Then Again if you check that cinder service list you will see the cinder-volume service is up for hpelefthand
+
+~~~
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+| Binary           | Host                       | Zone | Status  | State | Updated_at                 | Disabled Reason |
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+| cinder-scheduler | hostgroup                  | nova | enabled | up    | 2018-11-28T07:22:08.000000 | -               |
+| cinder-volume    | hostgroup@tripleo-lefthand | nova | enabled | up    | 2018-11-28T07:22:13.000000 | -               |
+| cinder-volume    | hostgroup@tripleo_iscsi    | nova | enabled | down  | 2018-11-27T10:57:28.000000 | -               |
++------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
+~~~
+
+#####[Note: I have kept my lvm service down thats why its shows hostgroup@tripleo_iscsi down in your case it might be up]
 
 
 RHOSP-13 Integration :-
 -----------------------
+* In RHOSP13 we have defaults templates at /usr/share/openstack-tripleo-heat-templates/environments
+~~~
+/usr/share/openstack-tripleo-heat-templates/environments/cinder-hpelefthand-config.yaml
+~~~
+
+* Copy that file in /home/stack/templates/
+
+~~~
+(overcloud) [stack@undercloud environments]$ cp cinder-hpelefthand-config.yaml /home/stack/templates/
+~~~
+
+* Change the values in `cinder-hpelefthand-config.yaml` as per your cluster
+
+~~~
+resource_registry:
+  OS::TripleO::Services::CinderHPELeftHandISCSI: /usr/share/openstack-tripleo-heat-templates/puppet/services/cinder-hpelefthand-iscsi.yaml
+
+parameter_defaults:
+  CinderHPELeftHandISCSIApiUrl: 'https://192.168.122.110:8081/lhos'
+  CinderHPELeftHandISCSIUserName: 'hpe'
+  CinderHPELeftHandISCSIPassword: 'hpe12345'
+  CinderHPELeftHandISCSIBackendName: 'tripleo_hpelefthand'
+  CinderHPELeftHandISCSIChapEnabled: false
+  CinderHPELeftHandClusterName: 'hp'
+  CinderHPELeftHandDebug: True
+~~~
+
+* In RHOSP13 we have containerized overcloud.
+* So before deployment we need to modify cinder-volume container
+* Follow the steps given below
+
+~~~
+$ cd /home/stack/
+$ mkdir cinder-hpe
+$ cat Dockerfile
+FROM 192.0.2.1:8787/rhosp13/openstack-cinder-volume:13.0-62
+USER root
+RUN sudo  curl -O http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+RUN sudo rpm -ivh epel-release-latest-7.noarch.rpm
+RUN sudo yum install -y python-pip --skip-broken
+RUN sudo pip install --upgrade pip
+RUN sudo pip install 'python-lefthandclient'
+~~~
+Search for cinder-volume in overcloud_images.yaml, copy the full path and write it in Dockerfile near `FROM` section
+
+* This Dockerfile will install hpelefthand client inside cinder-volume container.
+* Run the following commands and modify according to your environment.
+~~~
+$ docker build --rm -t 192.0.2.1:8787/rhosp13/openstack-cinder-volume:workaround /home/stack/cinder-hpe
+$ docker push 192.0.2.1:8787/rhosp13/openstack-cinder-volume:workaround
+$ docker images | grep workaround
+~~~
+
+* Now open overcloud_images.yaml and replace the image path to workaround
+~~~
+ DockerCinderSchedulerImage: 192.0.2.1:8787/rhosp13/openstack-cinder-scheduler:13.0-64
+ DockerCinderVolumeImage: 192.0.2.1:8787/rhosp13/openstack-cinder-volume:workaround
+ DockerClustercheckConfigImage: 192.0.2.1:8787/rhosp13/openstack-mariadb:13.0-61
+~~~
+
+* Run the deployment command now including the `cinder-hpelefthand-config.yaml` environment file.
+
+~~~
+openstack overcloud deploy --templates -e /home/stack/templates/node-info.yaml -e /home/stack/templates/overcloud_images.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e /home/stack/templates/network-environment.yaml -e /home/stack/templates/cinder-hpelefthand-config.yaml --ntp-server 192.0.2.1
+~~~
+
+
+
+
+
+
+
+
+
 
