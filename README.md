@@ -236,20 +236,64 @@ CMC Installation steps
 
 Integration with Openstack Environemnt :-
 ------------------------------------------
+As openstack is widely used cloud product.So it becomes necessary to have storage backened attached to our environment. Openstack supports various storage providers drivers. One of them is hpe3par/hpelefthand.
+We might face challenges in intergatin those storages with our environments. This document will guide you how to integrate hpelefthand with Packstack, RHOSP10 and RHOSP13.
 
+
+The templates for RHOSP10 and RHOSP13 is uploaded on this repository.
+Also cinder.conf for packstack is uploaded too.
+
+~~~
+To run openstack commands for any component in RHOSP10 and RHOSP13 source overcloudrc file
+To restart any service in RHOSP13 check the container id on controller node and restart container
+`docker restart container_id`
+To run openstack commands for any component in Packstack source `keystonerc_admin` file
+~~~
+
+Following are the steps important drivers need to installed in your environment to enable hpelefthand.
+
+~~~
+# yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+# yum install python-pip -y
+# pip install --upgrade pip
+# pip install 'python-lefthandclient>=2.1,<3.0'
+~~~
+
+Where to install above driver is explained in detail according to the environment.
 
 Packstack Integration :-
 ------------------------
+ * If you have packstack deployed environment, its become easy to integrate hpelefthand with it.
+ * The only thing you need to do is edit cinder.conf and install hpelefthand client on packsatck node.
+ * Below are steps to integrate hpelefthand with packstack
+~~~
+# vi /etc/cinder/cinder.conf
+~~~
+* Add the following lines and change values as per your environment
 
+    <img src="images/pack01.png" width="600" />
+
+* Also enable hpeleftand as backened in cinder.conf
+
+     <img src="images/pack02.png" width="600" />
+
+* Install the drivers of hpelefthand client as you can in above section.
+
+* Restart the cinder-volume service
+~~~
+systemctl restart openstack-cinder-volume
+~~~
+
+* Then check cinder service list after sourcing keystone_admin file
 
 RHOSP-10 Integration :-
 -----------------------
 * I haved installed RHOSP10 using director.
 * In RHOSP10 we have all services as systemd service
 
-* To integrate hpelefthand with rhosp10 we need to create customize templates the templates for osp10 is loaded on this repo have a look on it
+* To integrate hpelefthand with rhosp10 we need to create customize templates the templates for osp10 is uploaded on this repo have a look on it
 
-* Check the contents of custom-env.yaml file in rhosp13_hpelefthand.tar
+* Check the contents of custom-env.yaml file in rhosp10_hpelefthand.tar
 * Make necessry changes as your environment and include this environment file in your deployment command (** for reference check deploy.sh script given in the tar**).
 * Hit the deployment command
 * Once your deployment is complete to undercloud and source overcloudrc file.
@@ -261,7 +305,7 @@ RHOSP-10 Integration :-
     $ cinder service-list
     ~~~
     - If you see that your your hpelefthand down, like below output
-    ~~~
+~~~
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
 | Binary           | Host                       | Zone | Status  | State | Updated_at                 | Disabled Reason |
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
@@ -269,8 +313,7 @@ RHOSP-10 Integration :-
 | cinder-volume    | hostgroup@tripleo-lefthand | nova | enabled | down  | 2018-11-28T06:55:23.000000 | -               |
 | cinder-volume    | hostgroup@tripleo_iscsi    | nova | enabled | down  | 2018-11-27T10:57:28.000000 | -               |
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
-
-    ~~~
+~~~
 * Then go on controller node and install pip over that node
 ~~~
 # yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
