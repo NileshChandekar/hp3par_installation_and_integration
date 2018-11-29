@@ -374,12 +374,59 @@ $ docker images | grep workaround
 openstack overcloud deploy --templates -e /home/stack/templates/node-info.yaml -e /home/stack/templates/overcloud_images.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e /home/stack/templates/network-environment.yaml -e /home/stack/templates/cinder-hpelefthand-config.yaml --ntp-server 192.0.2.1
 ~~~
 
+* Lets create a volume and attach it to instance
 
+* Initially there is no volume created other than system reserved
 
+    <img src="images/vol001.png" width="600" />
 
+* Lets Create a volume of 5GB
 
+    <img src="images/vol01.png" width="600" />
 
+    <img src="images/vol02.png" width="600" />
 
+* Create an instance and verify there is no volume attached
+
+    <img src="images/vol03.png" width="600" />
+
+* Now attach a volume to an instance
+
+    <img src="images/vol04.png" width="600" />
+
+    <img src="images/vol05.png" width="600" />
+
+* ssh into an instance and mount the attached volume to an instance
+
+  In my case it is cirros instance and it has floating ip `192.168.122.116`
+
+~~~
+$ ssh cirros@192.168.122.116
+~~~
+
+* Once you get into he instance hit following commands to attach a volume
+
+~~~
+$ sudo -i
+# lsblk
+~~~
+
+ <img src="images/vol09.png" width="600" />
+
+~~~
+# mkdir /data
+# mkfs.ext4 /dev/vdb
+# mount /dev/vdb /data/
+~~~
+ <img src="images/vol06.png" width="600" />
+
+* Lets add some data inside that attached volume
+
+    <img src="images/vol07.png" width="600" />
+
+    <img src="images/vol08.png" width="600" />
+
+###### We can see that size of used space increased.
 
 
 
