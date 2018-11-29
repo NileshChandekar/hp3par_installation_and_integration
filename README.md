@@ -291,9 +291,9 @@ RHOSP-10 Integration :-
 * I haved installed RHOSP10 using director.
 * In RHOSP10 we have all services as systemd service
 
-* To integrate hpelefthand with rhosp10 we need to create customize templates the templates for osp10 is loaded on this repo have a look on it
+* To integrate hpelefthand with rhosp10 we need to create customize templates the templates for osp10 is uploaded on this repo have a look on it
 
-* Check the contents of custom-env.yaml file in rhosp13_hpelefthand.tar
+* Check the contents of custom-env.yaml file in rhosp10_hpelefthand.tar
 * Make necessry changes as your environment and include this environment file in your deployment command (** for reference check deploy.sh script given in the tar**).
 * Hit the deployment command
 * Once your deployment is complete to undercloud and source overcloudrc file.
@@ -305,7 +305,7 @@ RHOSP-10 Integration :-
     $ cinder service-list
     ~~~
     - If you see that your your hpelefthand down, like below output
-    ~~~
+~~~
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
 | Binary           | Host                       | Zone | Status  | State | Updated_at                 | Disabled Reason |
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
@@ -313,8 +313,7 @@ RHOSP-10 Integration :-
 | cinder-volume    | hostgroup@tripleo-lefthand | nova | enabled | down  | 2018-11-28T06:55:23.000000 | -               |
 | cinder-volume    | hostgroup@tripleo_iscsi    | nova | enabled | down  | 2018-11-27T10:57:28.000000 | -               |
 +------------------+----------------------------+------+---------+-------+----------------------------+-----------------+
-
-    ~~~
+~~~
 * Then go on controller node and install pip over that node
 ~~~
 # yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
