@@ -1,10 +1,10 @@
-# HP3PAR Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13
+# Hpelefthand Installation and Deployment with Integration of Packstack-10/RHOSP-10/RHOSP-13
 
 Tested and working on all above Openstack Environemnt.
 
 ## Warning
 
-For RHOSP-13, HP3Par lefthand is not supported as its a containerized environment.
+For RHOSP-13, Hpelefthand lefthand is not supported as its a containerized environment.
 There are some tweak to make it work.
 
 We will not take you throught the process of Packstack-10/OSP10/13 installation.
@@ -12,12 +12,12 @@ We will not take you throught the process of Packstack-10/OSP10/13 installation.
 
 What's included
 ---------------
-* Hp3Par Installtion on KVM
-* Static IP Configuration of Hp3Par
+* Hpelefthand Installtion on KVM
+* Static IP Configuration of Hpelefthand
 * CMC Installtion on Lubuntu (as CMC required GUI, we decided to take light weight GUI)
-* Connect CMC with Hp3Par
+* Connect CMC with Hpelefthand
 * User Management, RAID Creation,
-* Integration of Hp3Par with Openstack (Packstack-10/RHOSP-10 & RHOSP-13)
+* Integration of Hpelefthand with Openstack (Packstack-10/RHOSP-10 & RHOSP-13)
 * Testing
 
 Prerequisites
@@ -28,7 +28,7 @@ Prerequisites
   - Hpe LeftHand setup tar file
     - HPE_StoreVirtual_KVM_VSA_and_StoreVirtual_FOM_Installer_TA688-10554.tgz
 
-Hp3Par Installation steps
+Hpelefthand Installation steps
 --------------------------
 ~~~
 Overview
@@ -236,7 +236,7 @@ CMC Installation steps
 
 Integration with Openstack Environemnt :-
 ------------------------------------------
-As openstack is widely used cloud product.So it becomes necessary to have storage backened attached to our environment. Openstack supports various storage providers drivers. One of them is hpe3par/hpelefthand.
+As openstack is widely used cloud product.So it becomes necessary to have storage backened attached to our environment. Openstack supports various storage providers drivers. One of them is Hpelefthand/hpelefthand.
 We might face challenges in intergatin those storages with our environments. This document will guide you how to integrate hpelefthand with Packstack, RHOSP10 and RHOSP13.
 
 
@@ -352,6 +352,7 @@ RHOSP-10 Integration :-
 RHOSP-13 Integration :-
 -----------------------
 * In RHOSP13 we have defaults templates at /usr/share/openstack-tripleo-heat-templates/environments
+
 ~~~
 /usr/share/openstack-tripleo-heat-templates/environments/cinder-hpelefthand-config.yaml
 ~~~
